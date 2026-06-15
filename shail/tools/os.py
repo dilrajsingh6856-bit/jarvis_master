@@ -65,12 +65,13 @@ def open_app(app_name: str) -> str:
     """Open a macOS application by name (e.g., 'Calculator', 'Terminal', 'Safari').
     
     Args:
-        app_name: Name of the application to open
+        app_name: Name of the application to open (e.g., 'Spotify', 'Finder')
         
     Returns:
-        Status message
+        Status message indicating success or failure.
     """
     # SIMPLIFIED: Just execute directly without permission checks for MVP
+    # This invokes the macOS system 'open' utility to launch the designated application.
     import subprocess
     print(f"[DEBUG open_app] CALLED with app_name={app_name}")
     try:
@@ -86,15 +87,17 @@ def open_app(app_name: str) -> str:
 
 @tool
 def close_app(app_name: str) -> str:
-    """Close a macOS application by name.
+    """Close a macOS application gracefully by name using AppleScript.
     
     Args:
-        app_name: Name of the application to close
+        app_name: Name of the application to close (e.g., 'Safari', 'Xcode')
         
     Returns:
-        Status message
+        Status message indicating success or failure.
     """
     # SIMPLIFIED: Just execute directly without permission checks for MVP
+    # We use AppleScript (osascript) to command the target application to quit,
+    # which allows it to save state or prompt the user if needed, rather than forcefully killing the process.
     import subprocess
     print(f"[DEBUG close_app] CALLED with app_name={app_name}")
     try:
